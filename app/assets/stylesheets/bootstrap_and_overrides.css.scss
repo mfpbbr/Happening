@@ -15,6 +15,16 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+@mixin custom_error {
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  color: #B94A48;
+  padding: 8px 35px 8px 14px; 
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
 /* universal */
 
 html {
@@ -220,3 +230,33 @@ footer {
   margin-top: 45px;
   @include box_sizing;
 }
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style-type: none;
+    margin: 0 0 18px 0;
+    li:before {
+      content: "* ";
+    }
+  }
+
+  h2 {
+    @include custom_error;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: left;
+  }
+}
+
+.container {
+  .alert-alert {
+    @include custom_error;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+

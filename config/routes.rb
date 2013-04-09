@@ -1,4 +1,14 @@
 Happening::Application.routes.draw do
+  devise_scope :user do
+    get "/signin" => "devise/sessions#new"
+    delete "/signout" => "devise/sessions#destroy"
+    get "/signup" => "devise/registrations#new"
+    get "/settings" => "devise/registrations#edit"
+  end
+
+  devise_for :users
+
+  resources :users, only: [:index, :show]
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'
