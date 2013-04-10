@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    @coordinates = current_geo_location
   end
 
   def help
