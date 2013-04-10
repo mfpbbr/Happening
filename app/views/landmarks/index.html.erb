@@ -1,0 +1,10 @@
+<h1>Displaying landmarks near you</h1>
+
+<% @landmarks.each do |landmark_object| %>
+  <p>
+    <h3>
+      <%= link_to landmark_object.title, landmark_object %>
+    </h3>
+    <div class="distance">Distance: <%= landmark_object.distance %></div> 
+  </p>
+<% end %>

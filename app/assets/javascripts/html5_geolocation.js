@@ -48,8 +48,8 @@ function stopWatching() {
 }
 
 function setGeoCookie(position) {
-  var locationString = position.coords.latitude + "|" + position.coords.longitude;
-  setCookie("lat_lng", locationString);
+  var locationString = position.coords.longitude + "|" + position.coords.latitude;
+  setCookie("lng_lat", locationString);
   setCookie("geolocation_error", "");
   //alert(locationString);
 }

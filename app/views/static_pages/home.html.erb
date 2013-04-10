@@ -1,3 +1,8 @@
+<% if user_signed_in? %>
+  <ul>
+    <li><%= link_to "landmarks", landmarks_path%></li>
+  </ul>
+<% else %>
 <div class="center hero-unit">
   <h1>Welcome to Happening</h1>
 
@@ -5,3 +10,4 @@
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
+<% end %>
