@@ -1,0 +1,10 @@
+<h1>Displaying restaurants near you</h1>
+
+<% @restaurants.each do |restaurant| %>
+  <p>
+    <h3>
+      <%= link_to restaurant.title, restaurant %>
+    </h3>
+    <div class="distance">Distance: <%= restaurant.distance %></div> 
+  </p>
+<% end %>

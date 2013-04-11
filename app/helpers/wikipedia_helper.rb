@@ -13,7 +13,7 @@ module WikipediaHelper
     response = Net::HTTP.get_response(uri)
 
     if response.code.to_i > 299
-      logger.debug "URL: #{urlstring} responsecode: #{response.code}"
+      logger.debug "URL: #{@source_url} responsecode: #{response.code} error:#{response.body.to_s}"
       return nil
     end
 
