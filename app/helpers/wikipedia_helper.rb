@@ -19,4 +19,20 @@ module WikipediaHelper
 
     return response.body
   end  
+
+  def parse_data(data)
+    landmark_objects = []
+
+    data["articles"].each do |article|
+      landmark_object = Landmark.new(
+                  coordinates: [article["lng"].to_f, article["lat"].to_f],
+                    title: article["title"], 
+                    url: article["url"],
+                    source: "wikipedia")
+
+      landmark_objects << landmark_object
+    end 
+
+    return landmark_objects
+  end
 end

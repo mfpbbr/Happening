@@ -27,4 +27,21 @@ module YelpHelper
 
     return response.body
   end  
+
+  def parse_data(data, class_str)
+    entity_objects = []
+
+    data["businesses"].each do |business|
+      entity = class_str.capitalize.constantize.new(
+                  coordinates: [business["location"]["coordinate"]["longitude"], business["location"]["coordinate"]["latitude"]],
+                    title: business["name"], 
+                    url: business["url"],
+                    address: business["location"]["display_address"].join(" "),
+                    source: "yelp")
+
+        entity_objects << entity
+      end 
+
+      return entity_objects
+  end
 end

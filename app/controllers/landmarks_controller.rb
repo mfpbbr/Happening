@@ -22,41 +22,20 @@ class LandmarksController < ApplicationController
   end
 
   def create
-    data = fetch_objects_near_location(@coordinates)
-    if data.nil?
+    landmark_content = fetch_objects_near_location(@coordinates)
+    if landmark_content.nil?
       @landmarks = []
-      return @landmarks
-    end
-
-    data = JSON.parse(data)
-
-    raw_object = Raw.create(data: data, source_url: @source_url)
-    @landmarks = []
-    landmark_objects = parse_data(data)
-    landmark_objects.each do |landmark_object|
-      landmark_object.raw_id = raw_object.id
-      landmark_object.save!
-      @landmarks << landmark_object
+    else
+      data = JSON.parse(landmark_content)
+      raw_object = Raw.create(data: data, source_url: @source_url)
+      @landmarks = parse_data(data)
+      @landmarks.each do |landmark|
+        landmark.raw_id = raw_object.id
+        landmark.save!
+      end
     end
 
     return @landmarks
   end
 
-  private
-
-    def parse_data(data)
-      landmark_objects = []
-
-      data["articles"].each do |article|
-        landmark_object = Landmark.new(
-                    coordinates: [article["lng"].to_f, article["lat"].to_f],
-                      title: article["title"], 
-                      url: article["url"],
-                      source: "wikipedia")
-
-        landmark_objects << landmark_object
-      end 
-
-      return landmark_objects
-    end
 end
