@@ -1,0 +1,8 @@
+<h1>Displaying photos near you</h1>
+
+<% @photos.each do |photo| %>
+  <p>
+    <%= link_to image_tag(photo.image_small), photo %>
+    <div class="distance">Distance: <%= photo.distance %></div> 
+  </p>
+<% end %>

@@ -1,0 +1,9 @@
+<% unless @photo.title.nil? %>
+<h3><%= @photo.title %></h3>
+<% end %>
+<div class="externalurl"><%= link_to @photo.url, @photo.url %></div>
+<% unless @photo.location_name.nil? %>
+<div class="address">Location: <%= @photo.location_name %></div>
+<% end %>
+<div class="distance">Distance: <%= @photo.distance %></div>
+<%= image_tag(@photo.image_large) %>

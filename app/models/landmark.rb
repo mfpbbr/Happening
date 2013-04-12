@@ -12,5 +12,5 @@ class Landmark
 
   attr_accessible :title, :url, :distance, :source, :coordinates
 
-  index({ location: "2d" }, { min: -200, max: 200 })
+  index({ coordinates: "2d" }, { min: -200, max: 200 })
 end
