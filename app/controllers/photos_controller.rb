@@ -1,8 +1,8 @@
 require 'json'
 
 class PhotosController < ApplicationController
-  #include InstagramHelper
-  include FlickrHelper
+  include InstagramHelper
+  #include FlickrHelper
 
   def index
     # NOTE: There is a difference between the geo_near_distance 

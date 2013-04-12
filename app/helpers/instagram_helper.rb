@@ -9,10 +9,10 @@ module InstagramHelper
     @source_url = INSTAGRAM_URI % [ coordinates[1], coordinates[0], options[:radius] ]
     uri = URI.parse(@source_url)
     
-    req = Net::HTTP::Get.new(uri.path)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    response = http.request(req)
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    response = http.get(uri.request_uri)
 
     if response.code.to_i > 299
       logger.debug "URL: #{@source_url} responsecode: #{response.code} error:#{response.body.to_s}"
@@ -26,9 +26,10 @@ module InstagramHelper
     photo_objects = []
 
     data["data"].each do |image|
+      title = image["caption"].nil? ? "" : image["caption"]["text"]
       photo = Photo.new(
                     coordinates: [image["location"]["longitude"], image["location"]["latitude"]],
-                    title: image["caption"], 
+                    title: title, 
                     url: image["link"],
                     location_name: image["location"]["name"],
                     image_small: image["images"]["thumbnail"]["url"],
