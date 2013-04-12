@@ -1,0 +1,8 @@
+<h1>Displaying events near you</h1>
+
+<% @events.each do |event| %>
+  <p>
+    <h3><%= link_to event.title, event %></h3>
+    <div class="distance">Distance: <%= event.distance %></div> 
+  </p>
+<% end %>

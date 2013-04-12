@@ -13,6 +13,7 @@ Happening::Application.routes.draw do
   resources :landmarks, only: [:index, :show]
   resources :restaurants, only: [:index, :show]
   resources :photos, only: [:index, :show]
+  resources :events, only: [:index, :show]
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'
