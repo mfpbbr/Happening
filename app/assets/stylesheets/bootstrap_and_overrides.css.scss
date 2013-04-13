@@ -260,3 +260,12 @@ footer {
   @extend .error;
 }
 
+.groupon_header {
+  float: right;
+  padding: 15px;
+  img {
+    max-width: 280px;
+    max-height: 80px;
+  }
+}
+

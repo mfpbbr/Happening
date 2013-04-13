@@ -1,0 +1,13 @@
+<div class="groupon_header"><%= link_to image_tag("powered_by_groupon.png", 
+ alt: "Groupon"), "http://www.groupon.com" %></div>
+<h1>Displaying deals near you</h1>
+
+<% @deals.each do |deal| %>
+  <p>
+    <div class="deal_image">
+    <%= link_to image_tag(deal.image_small), deal %>
+    </div>
+    <%= link_to deal.title, deal %>
+    <div class="distance">Distance: <%= deal.distance %></div> 
+  </p>
+<% end %>

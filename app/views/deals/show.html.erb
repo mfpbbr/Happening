@@ -1,0 +1,8 @@
+<div class="groupon_header"><%= link_to image_tag("powered_by_groupon.png", 
+ alt: "Groupon"), "http://www.groupon.com" %></div>
+<h3><%= @deal.title %></h3>
+<strong><%= @deal.merchant_name %></strong><br />
+<div class="address"><%= @deal.address unless @deal.address.nil? %></div>
+<div class="externalurl"><%= link_to @deal.url, @deal.url %></div>
+<div class="distance">Distance: <%= @deal.distance %></div>
+<%= image_tag(@deal.image_large) %>
