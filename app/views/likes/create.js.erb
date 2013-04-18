@@ -1,0 +1,4 @@
+<% unless @like.errors.any? %>
+  $("#<%= generate_css_id(@likeable) %>").html(
+    "<%= escape_javascript(render partial: 'likes/undo_like_form', locals: { like_object: @like } )%>") 
+<% end %>

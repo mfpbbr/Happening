@@ -13,11 +13,11 @@ class StatusesController < ApplicationController
   end
 
   def destroy
-    begin
-      @status = current_user.statuses.find(params[:id])
-      @status.destroy
-    rescue
+    @status = current_user.statuses.where(id: params[:id]).first
+    if @status.nil?
       flash[:error] = "Unable to delete the status"
+    else
+      @status.destroy
     end
 
     redirect_to user_path(current_user)

@@ -1,0 +1,3 @@
+$("#<%= generate_css_id(@likeable) %>").html(
+    "<%= escape_javascript(render partial: 'likes/do_like_form', locals: { likeable: @likeable })%>")
+

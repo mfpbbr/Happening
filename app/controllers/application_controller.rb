@@ -16,14 +16,10 @@ class ApplicationController < ActionController::Base
       @coordinates = cookies[:lng_lat].split("|").map { |str| str.to_f }
     end
 
-    def find_likeable
+    def find_polymorphic_parent_entity
       params.each do |name, value|
         if name =~ /(.+)_id$/
-          begin
-            return $1.capitalize.constantize.find(value)
-          rescue
-            return nil
-          end
+          return $1.capitalize.constantize.where(id: value).first
         end 
       end 
 
