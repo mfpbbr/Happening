@@ -5,8 +5,12 @@ class Status
   field :text, type: String
   field :coordinates, type: Array
 
-  embedded_in :user
+  belongs_to :user
+  has_many :likes, as: :likeable, dependent: :destroy
 
   attr_accessible :text, :coordinates
 
+  def title
+    self.text
+  end
 end

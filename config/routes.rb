@@ -10,7 +10,10 @@ Happening::Application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resources :statuses, only: [:create, :destroy]
+    resources :statuses, only: [:create, :destroy], shallow: true
+  end
+  resources :statuses, only: [:show] do
+    resources :likes, only: [:create, :destroy], shallow: true
   end
   resources :landmarks, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true

@@ -23,4 +23,11 @@ class StatusesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def show
+    @status = Status.where(id: params[:id]).first
+    if @status.nil?
+      flash[:error] = "No such status exists"
+      redirect_to root_path
+    end
+  end
 end

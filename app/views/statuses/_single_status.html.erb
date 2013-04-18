@@ -1,0 +1,14 @@
+<h3><%= wrap(status.text) %></h3>
+Posted by: <span class="user"><%= link_to status.user.username, status.user %></span>
+<div class="timestamp">
+  <%= time_ago_in_words(status.created_at) %> ago.
+</div>
+<div class="before_photo">
+<% if current_user?(status.user) %>
+  <%= link_to "delete", status, class: "btn btn-danger", method: :delete, 
+                                   data: { confirm: "You sure?" },
+                                   title: status.text %>
+<% else %>
+ <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, status), likeable: status } %> 
+<% end %>
+</div>
