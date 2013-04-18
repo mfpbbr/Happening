@@ -3,7 +3,7 @@
     <a href="#">Happening</a>
     by <%= link_to "@arvindevo", "https://twitter.com/arvindevo" %>
 
-    <% if Rails.env.development? %>
+    <% if Rails.env.development? or Rails.env.production? %>
       Latitude: <%= @coordinates[1] %>
       Longitude: <%= @coordinates[0] %>
     <% end %>
