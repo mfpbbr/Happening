@@ -3,9 +3,9 @@
 <table class="table events">
 <% @events.each do |event| %>
   <tr>
-    <td class="logo"><%= image_tag(event.logo) %></td>
+    <td class="logo"><%= link_to image_tag(event.logo), event %></td>
     <td>
-      <h3><%= link_to event.title, event %></h3>
+      <h4><%= link_to event.title, event %></h4>
       <dl>
         <dt class="icon-time"></dt>
         <dd><%= event.start_date %></dd>

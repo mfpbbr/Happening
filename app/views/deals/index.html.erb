@@ -1,13 +1,26 @@
-<div class="groupon_header"><%= link_to image_tag("powered_by_groupon.png", 
- alt: "Groupon"), "http://www.groupon.com" %></div>
-<h1>Displaying deals near you</h1>
+<div class="groupon_header">
+  <h1>Displaying deals near you</h1>
+  <%= link_to image_tag("powered_by_groupon.png", 
+ alt: "Groupon"), "http://www.groupon.com" %>
+</div>
 
+<table class="table deals">
+<tbody>
 <% @deals.each do |deal| %>
-  <p>
-    <div class="deal_image">
-    <%= link_to image_tag(deal.image_small), deal %>
-    </div>
-    <%= link_to deal.title, deal %>
-    <div class="distance">Distance: <%= deal.distance %></div> 
-  </p>
+  <tr>
+    <td><%= link_to image_tag(deal.image_small), deal %></td>
+    <td>
+      <h4><%= link_to deal.title, deal %></h4>
+      <dl>
+        <dt>Merchant:</dt>
+        <dd><%= deal.merchant_name %></dd>
+        <dt class="icon-map-marker"></dt>
+        <dd><%= deal.address %></dd>
+        <dt>Distance:</dt>
+        <dd class="distance"><%= deal.distance %></div> 
+      </dl>
+    </td>
+  </tr>
 <% end %>
+</tbody>
+</table>
