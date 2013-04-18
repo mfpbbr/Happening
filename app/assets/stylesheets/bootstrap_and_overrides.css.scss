@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 /* 
-  CITE: This css is taken from Michael Hartl's Ruby on Rails tutorial at http://ruby.railstutorial.org/ 
+  CITE: Portions of css are taken from Michael Hartl's Ruby on Rails tutorial at http://ruby.railstutorial.org/ 
 
 */
 
@@ -269,3 +269,8 @@ footer {
   }
 }
 
+.span4 .thumbnail {
+  height: 450px;
+  max-height: 450px;
+  overflow: hidden;
+}

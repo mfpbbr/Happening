@@ -1,8 +1,16 @@
 <h1>Displaying photos near you</h1>
 
+<ul class="thumbnails">
 <% @photos.each do |photo| %>
-  <p>
-    <%= link_to image_tag(photo.image_small), photo %>
-    <div class="distance">Distance: <%= photo.distance %></div> 
-  </p>
+  <li class="span4">
+    <div class="thumbnail">
+      <%= link_to image_tag(photo.image_small), photo %>
+      <h3 class="location"><%= photo.location_name.nil? ? " " : photo.location_name %></h3>
+      <div class="distance">Distance: <%= photo.distance %></div> 
+      <% unless photo.title.nil? %>
+        <div class="caption"><%= photo.title %></div>
+      <% end %>
+    </div>
+  </li>
 <% end %>
+</ul>

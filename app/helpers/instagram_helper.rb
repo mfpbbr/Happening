@@ -32,7 +32,7 @@ module InstagramHelper
                     title: title, 
                     url: image["link"],
                     location_name: image["location"]["name"],
-                    image_small: image["images"]["thumbnail"]["url"],
+                    image_small: image["images"]["low_resolution"]["url"],
                     image_large: image["images"]["standard_resolution"]["url"],
                     source: "instagram")
 

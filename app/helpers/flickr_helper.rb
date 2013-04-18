@@ -42,7 +42,7 @@ module FlickrHelper
       secret = image_details["secret"]
       server_id = image_details["server"]
       farm_id = image_details["farm"]
-      photo_image_small = "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{photo_id}_#{secret}_t.jpg"
+      photo_image_small = "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{photo_id}_#{secret}_m.jpg"
       photo_image_large = "http://farm#{farm_id}.staticflickr.com/#{server_id}/#{photo_id}_#{secret}_b.jpg"
       
       photo_info_url = FLICKR_PHOTO_INFO_URI % [ photo_id, secret ]
