@@ -1,0 +1,7 @@
+<div class="like_form" id="<%= generate_css_id(likeable) %>">
+<% if like_object.nil? %>
+  <%= render partial: 'likes/do_like_form', locals: { likeable: likeable } %>
+<% else %>
+  <%= render partial: 'likes/undo_like_form', locals: { like_object: like_object } %> 
+<% end %>
+</div>

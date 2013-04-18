@@ -14,7 +14,9 @@ Happening::Application.routes.draw do
   end
   resources :landmarks, only: [:index, :show]
   resources :restaurants, only: [:index, :show]
-  resources :photos, only: [:index, :show]
+  resources :photos, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
   resources :events, only: [:index, :show]
   resources :deals, only: [:index, :show]
 

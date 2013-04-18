@@ -16,6 +16,20 @@ class ApplicationController < ActionController::Base
       @coordinates = cookies[:lng_lat].split("|").map { |str| str.to_f }
     end
 
+    def find_likeable
+      params.each do |name, value|
+        if name =~ /(.+)_id$/
+          begin
+            return $1.capitalize.constantize.find(value)
+          rescue
+            return nil
+          end
+        end 
+      end 
+
+      return nil 
+    end
+
   private
 
     def get_location_from_geocoder

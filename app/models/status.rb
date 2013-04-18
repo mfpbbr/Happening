@@ -9,5 +9,4 @@ class Status
 
   attr_accessible :text, :coordinates
 
-  index({ coordinates: "2d" }, { min: -200, max: 200 })
 end

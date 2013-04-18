@@ -12,6 +12,7 @@ class Photo
   field :image_large
 
   belongs_to :raw
+  has_many :likes, as: :likeable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :location_name, :source, :coordinates, :image_small, :image_large
 

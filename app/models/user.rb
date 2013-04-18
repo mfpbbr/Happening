@@ -40,6 +40,9 @@ class User
   attr_accessible :login
 
   embeds_many :statuses
+  has_many :likes, dependent: :destroy
+
+  index({ "statuses.coordinates" => "2d" }, { min: -200, max: 200 })
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

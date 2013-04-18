@@ -5,6 +5,7 @@
   <li class="span4">
     <div class="thumbnail">
       <%= link_to image_tag(photo.image_small), photo %>
+      <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, photo), likeable: photo } %>
       <h3 class="location"><%= photo.location_name.nil? ? " " : photo.location_name %></h3>
       <div class="distance">Distance: <%= photo.distance %></div> 
       <% unless photo.title.nil? %>
