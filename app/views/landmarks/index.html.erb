@@ -6,7 +6,8 @@
     <h3>
       <%= link_to landmark_object.title, landmark_object %>
     </h3>
-    <div class="distance">Distance: <%= landmark_object.distance %></div> 
+    <div class="distance">Distance: <%= landmark_object.distance %></div>
+    <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, landmark_object), likeable: landmark_object } %>
   </li>
 <% end %>
 </ul>

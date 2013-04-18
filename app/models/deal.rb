@@ -13,6 +13,7 @@ class Deal
   field :image_large
 
   belongs_to :raw
+  has_many :likes, as: :likeable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :merchant_name, :address, :source, :coordinates, :image_small, :image_large
 

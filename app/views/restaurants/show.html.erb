@@ -1,3 +1,4 @@
+<div>
 <%= image_tag(@restaurant.image_url) %>
 <h3><%= @restaurant.title %></h3>
 <div class="externalurl"><%= link_to @restaurant.url, @restaurant.url %></div>
@@ -11,4 +12,5 @@
   <dt>Distance:</dt>
   <dd class="distance"><%= @restaurant.distance %></div> 
 </dl>
-
+<%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @restaurant), likeable: @restaurant } %>
+</div>

@@ -366,6 +366,11 @@ aside {
   color: $grayLight;
 }
 
-.new_like, .edit_like {
-  padding: 5px;
+
+dl, .new_like, .edit_like {
+  margin-bottom: 0px;
+}
+
+.before_photo {
+  margin-top: 5px;
 }

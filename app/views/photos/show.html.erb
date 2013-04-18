@@ -7,3 +7,6 @@
 <div class="externalurl"><%= link_to @photo.url, @photo.url %></div>
 <div class="distance">Distance: <%= @photo.distance %></div>
 <%= image_tag(@photo.image_large) %>
+<div class="before_photo">
+<%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @photo), likeable: @photo } %>
+</div>

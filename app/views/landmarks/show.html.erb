@@ -1,3 +1,5 @@
 <h3><%= @landmark.title %></h3>
 <div class="externalurl"><%= link_to @landmark.url, @landmark.url %></div>
 <div class="distance">Distance: <%= @landmark.distance %></div>
+<%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @landmark), likeable: @landmark } %>
+

@@ -12,13 +12,21 @@ Happening::Application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :statuses, only: [:create, :destroy]
   end
-  resources :landmarks, only: [:index, :show]
-  resources :restaurants, only: [:index, :show]
+  resources :landmarks, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
+  resources :restaurants, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
   resources :photos, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
-  resources :events, only: [:index, :show]
-  resources :deals, only: [:index, :show]
+  resources :events, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
+  resources :deals, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
 
   root to: 'static_pages#home'
   match '/help', to: 'static_pages#help'

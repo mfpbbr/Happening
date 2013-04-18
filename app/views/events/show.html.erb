@@ -5,3 +5,5 @@
 <div class="address"><strong>Venue: </strong><%= @event.venue_name %></div>
 <div class="address"><strong>Address: </strong><%= @event.address %></div>
 <div class="distance"><strong>Distance: </strong><%= @event.distance %></div>
+<%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @event), likeable: @event } %>
+

@@ -9,6 +9,7 @@ class Landmark
   field :coordinates, type: Array
 
   belongs_to :raw
+  has_many :likes, as: :likeable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :source, :coordinates
 

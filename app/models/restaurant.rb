@@ -14,6 +14,7 @@ class Restaurant
   field :coordinates, type: Array
 
   belongs_to :raw
+  has_many :likes, as: :likeable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :address, :category_list, :review_count, :rating_image_url, :image_url, :source, :coordinates
 

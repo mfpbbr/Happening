@@ -26,6 +26,7 @@
         <dt>Distance:</dt>
         <dd class="distance"><%= restaurant.distance %></div> 
       </dl>
+      <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, restaurant), likeable: restaurant } %>
     </td>
   </tr>
 <% end %>
