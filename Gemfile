@@ -10,6 +10,7 @@ gem 'oauth'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'will_paginate_mongoid'
+gem 'geocoder'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

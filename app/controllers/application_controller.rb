@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
   private
 
     def get_location_from_geocoder
-      # TODO: make call to geocoder
-      # currently hardcoding this
-      cookies[:lng_lat] = "-122.017164|37.401290"
+      cookies[:lng_lat] = "#{request.location.longitude}|#{request.location.latitude}"
     end
 end
