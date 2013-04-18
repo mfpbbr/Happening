@@ -1,6 +1,7 @@
 class StatusesController < ApplicationController
   def create
     @status = current_user.statuses.build(params[:status])
+    @status.coordinates = current_geo_location
     if @status.save
       flash[:success] = "Successfully updated status"
     else
