@@ -18,7 +18,4 @@ class Photo
 
   index({ coordinates: "2d" }, { min: -200, max: 200 })
 
-  def title
-    self.image_small
-  end
 end

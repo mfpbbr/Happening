@@ -68,7 +68,7 @@ class User
       activity_item = {}
       activity_item[:username] = like.user.username
       activity_item[:action] = "liked " + like.likeable.class.to_s
-      activity_item[:entity_title] = like.likeable.title
+      activity_item[:entity_title] = like.likeable.class.to_s == "Photo" ? like.likeable.image_small : like.likeable.title
       activity_item[:entity_url] = like.likeable
       activity_item[:action_created_at] = like.created_at
   
