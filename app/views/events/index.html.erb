@@ -3,7 +3,13 @@
 <table class="table events">
 <% @events.each do |event| %>
   <tr>
-    <td class="logo"><%= link_to image_tag(event.logo), event %></td>
+    <td class="logo">
+      <% if event.logo.nil? %>
+        <%= link_to image_tag("no_image.jpg"), event %>
+      <% else %>
+        <%= link_to image_tag(event.logo), event %>
+      <% end %>
+    </td>
     <td>
       <h4><%= link_to event.title, event %></h4>
       <dl>

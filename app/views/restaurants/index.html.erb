@@ -7,7 +7,13 @@
 <tbody>
 <% @restaurants.each do |restaurant| %>
   <tr>
-    <td class="logo"><%= link_to image_tag(restaurant.image_url), restaurant %></td>
+    <td class="logo">
+      <% if restaurant.image_url.nil? %>
+        <%= link_to image_tag("no_image.jpg"), restaurant %>
+      <% else %>
+        <%= link_to image_tag(restaurant.image_url), restaurant %>
+      <% end %>
+    </td>
     <td>
       <h4><%= link_to restaurant.title, restaurant %></h4>
       <dl>

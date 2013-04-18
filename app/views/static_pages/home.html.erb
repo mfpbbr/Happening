@@ -1,8 +1,10 @@
 <% if user_signed_in? %>
   <ul>
-    <li><%= link_to "landmarks", landmarks_path%></li>
-    <li><%= link_to "restaurants", restaurants_path%></li>
     <li><%= link_to "photos", photos_path%></li>
+    <li><%= link_to "events", events_path%></li>
+    <li><%= link_to "deals", deals_path%></li>
+    <li><%= link_to "restaurants", restaurants_path%></li>
+    <li><%= link_to "landmarks", landmarks_path%></li>
   </ul>
 <% else %>
 <div class="center hero-unit">
