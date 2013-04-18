@@ -1,8 +1,22 @@
 <h1>Displaying events near you</h1>
 
+<table class="table events">
 <% @events.each do |event| %>
-  <p>
-    <h3><%= link_to event.title, event %></h3>
-    <div class="distance">Distance: <%= event.distance %></div> 
-  </p>
+  <tr>
+    <td class="logo"><%= image_tag(event.logo) %></td>
+    <td>
+      <h3><%= link_to event.title, event %></h3>
+      <dl>
+        <dt class="icon-time"></dt>
+        <dd><%= event.start_date %></dd>
+        <dt>Venue:</dt>
+        <dd><%= event.venue_name %></dd>
+        <dt class="icon-map-marker"></dt>
+        <dd><%= event.address %></dd>
+        <dt>Distance:</dt>
+        <dd class="distance"><%= event.distance %></div> 
+      </dl>
+    </td>
+  </tr>
 <% end %>
+</table>

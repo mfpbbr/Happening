@@ -41,6 +41,7 @@ module EventbriteHelper
                 venue_name: venue["name"],
                 address: address,
                 start_date: event_details["event"]["start_date"],
+                logo: event_details["event"]["logo"],
                 source: "eventbrite")
 
       event_objects << event
