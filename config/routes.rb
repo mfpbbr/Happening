@@ -11,22 +11,33 @@ Happening::Application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :statuses, only: [:create, :destroy], shallow: true
+    member do
+      get :following, :followers
+    end
   end
+  
+  resources :relationships, only: [:create, :destroy]
+
   resources :statuses, only: [:show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
+
   resources :landmarks, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
+
   resources :restaurants, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
+
   resources :photos, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
+
   resources :events, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end
+
   resources :deals, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
   end

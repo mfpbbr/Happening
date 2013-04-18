@@ -374,3 +374,25 @@ dl, .new_like, .edit_like {
 .before_photo {
   margin-top: 5px;
 }
+
+.stats {
+  padding-top: 5px;
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}

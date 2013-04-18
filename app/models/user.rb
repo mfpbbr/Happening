@@ -41,8 +41,49 @@ class User
 
   has_many :statuses, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
 
   index({ "statuses.coordinates" => "2d" }, { min: -200, max: 200 })
+
+  def retrieve_users_for_ids(user_ids)
+    users = []
+    User.in(id: user_ids).each do |user|
+      users << user
+    end
+
+    users
+  end
+
+  def followed_users
+    user_ids = []
+    relationships.each do |relationship|
+      user_ids << relationship.followed_id
+    end
+
+    return retrieve_users_for_ids(user_ids)
+  end
+
+  def followers
+    user_ids = []
+    reverse_relationships.each do |relationship|
+      user_ids << relationship.follower_id
+    end
+
+    return retrieve_users_for_ids(user_ids)
+  end
+
+  def following?(other_user)
+    relationships.where(followed_id: other_user.id).first
+  end
+  
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.where(followed_id: other_user.id).first.destroy
+  end
 
   def activity
     activity_items = []

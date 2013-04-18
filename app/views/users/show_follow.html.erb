@@ -2,17 +2,19 @@
   <aside class="span4">
     <section>
       <h3><%= @user.username %></h3>
+      <span><%= link_to "view my profile", @user %></span>
     </section>
     <section>
       <%= render 'users/stats' %>
     </section>
   </aside>
   <div class="span8">
-    <%= render 'follow_form' unless current_user?(@user) %>
-    <h3>Activity</h3>
-    <ul class="feed">
-      <%= render partial: 'users/feed_item', collection: @feed_items %>
-    </ul>
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+    <% end %>
   </div>
 </div>
 
