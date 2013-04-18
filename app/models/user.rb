@@ -39,6 +39,8 @@ class User
   attr_accessor :login
   attr_accessible :login
 
+  embeds_many :statuses
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login).downcase

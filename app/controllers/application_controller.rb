@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include GeoHelper
+  include UsersHelper
   before_filter :current_geo_location
   before_filter :authenticate_user!
 

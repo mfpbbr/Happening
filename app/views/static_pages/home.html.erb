@@ -1,11 +1,17 @@
 <% if user_signed_in? %>
-  <ul>
-    <li><%= link_to "photos", photos_path%></li>
-    <li><%= link_to "events", events_path%></li>
-    <li><%= link_to "deals", deals_path%></li>
-    <li><%= link_to "restaurants", restaurants_path%></li>
-    <li><%= link_to "landmarks", landmarks_path%></li>
-  </ul>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'users/info' %>
+      </section>
+      <section>
+        <%= render 'statuses/form' %>
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>My Feed</h3>
+    </div>
+  </div>
 <% else %>
 <div class="center hero-unit">
   <h1>Welcome to Happening</h1>

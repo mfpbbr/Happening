@@ -9,7 +9,9 @@ Happening::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :statuses, only: [:create, :destroy]
+  end
   resources :landmarks, only: [:index, :show]
   resources :restaurants, only: [:index, :show]
   resources :photos, only: [:index, :show]

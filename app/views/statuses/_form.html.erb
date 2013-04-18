@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <%= form_for [current_user, current_user.statuses.new] do |f| %>
+    <div class="field">
+      <%= f.text_area :text, placeholder: 'What have you been upto?' %>
+    </div>
+    <%= f.submit 'post', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
