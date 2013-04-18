@@ -122,7 +122,16 @@ class User
   end
 
   def feed
-    activity
+    activity_items = activity
+
+    followed_users.each do |user|
+      friend_activity_items = user.activity
+      activity_items.concat friend_activity_items
+    end
+
+    activity_items.sort_by! { |activity_item| activity_item[:action_created_at] }.reverse!
+
+    activity_items
   end
 
   def self.find_for_database_authentication(warden_conditions)
