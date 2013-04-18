@@ -1,0 +1,12 @@
+<li class="feed_item">
+  <span class="user">
+    <%= link_to feed_item[:username], user_path(feed_item[:username]) %>
+  </span>
+  <span class="action"> <%= feed_item[:action] %> </span>
+  <div class="entity">
+    <%= entity_link feed_item[:entity_title], feed_item[:entity_url] %>
+  </div>
+  <span class="timestamp">
+    <%= time_ago_in_words(feed_item[:action_created_at]) %> ago.
+  </span>
+</li>

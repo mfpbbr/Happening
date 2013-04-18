@@ -44,6 +44,46 @@ class User
 
   index({ "statuses.coordinates" => "2d" }, { min: -200, max: 200 })
 
+  def activity
+    activity_items = []
+    # each activity item should consist of:
+    # 1) username
+    # 2) action: liked, posted status update, commented on
+    # 3) entity_title
+    # 4) entity_url
+    # 5) action_created_timestamp
+
+    statuses.each do |status|
+      activity_item = {}
+      activity_item[:username] = status.user.username
+      activity_item[:action] = "posted status update"
+      activity_item[:entity_title] = status.text
+      activity_item[:entity_url] = [self, status]
+      activity_item[:action_created_at] = status.created_at
+
+      activity_items << activity_item
+    end
+
+    likes.each do |like|
+      activity_item = {}
+      activity_item[:username] = like.user.username
+      activity_item[:action] = "liked " + like.likeable.class.to_s
+      activity_item[:entity_title] = like.likeable.class.to_s == "Photo" ? like.likeable.image_small : like.likeable.title
+      activity_item[:entity_url] = like.likeable
+      activity_item[:action_created_at] = like.created_at
+  
+      activity_items << activity_item
+    end
+
+    activity_items.sort_by { |activity_item| activity_item[:action_created_at] }.reverse
+
+    activity_items
+  end
+
+  def feed
+    activity
+  end
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login).downcase

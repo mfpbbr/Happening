@@ -5,5 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.where(id: params[:id]).first
+    @feed_items = @user.nil? ? [] : @user.activity
   end
 end

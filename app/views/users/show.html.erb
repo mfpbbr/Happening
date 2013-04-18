@@ -5,9 +5,9 @@
     </section>
   </aside>
   <div class="span8">
-    <h3><%= @user.username %>&rsquo;s Activity</h3>
-    <ul class="statuses">
-      <%= render @user.statuses %>
+    <h3>Activity</h3>
+    <ul class="feed">
+      <%= render partial: 'users/feed_item', collection: @feed_items %>
     </ul>
   </div>
 </div>
