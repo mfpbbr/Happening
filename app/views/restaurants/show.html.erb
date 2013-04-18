@@ -1,4 +1,14 @@
+<%= image_tag(@restaurant.image_url) %>
 <h3><%= @restaurant.title %></h3>
 <div class="externalurl"><%= link_to @restaurant.url, @restaurant.url %></div>
-<div class="address">Address: <%= @restaurant.address %></div>
-<div class="distance">Distance: <%= @restaurant.distance %></div>
+<dl>
+  <dt class="icon-tags"></dt>
+  <dd><%= @restaurant.category_list %></dd>
+  <dt><%= image_tag(@restaurant.rating_image_url) %></dt>
+  <dd><%= @restaurant.review_count %> reviews</dd>
+  <dt class="icon-map-marker"></dt>
+  <dd><%= @restaurant.address %></dd>
+  <dt>Distance:</dt>
+  <dd class="distance"><%= @restaurant.distance %></div> 
+</dl>
+

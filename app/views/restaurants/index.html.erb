@@ -1,10 +1,27 @@
-<h1>Displaying restaurants near you</h1>
+<div class="yelp_header">
+  <%= link_to image_tag("yelp_logo_100x50.png", alt: "Yelp"), "http://www.yelp.com" %>
+  <h1>Displaying restaurants near you</h1>
+</div>
 
+<table class="table restaurants">
+<tbody>
 <% @restaurants.each do |restaurant| %>
-  <p>
-    <h3>
-      <%= link_to restaurant.title, restaurant %>
-    </h3>
-    <div class="distance">Distance: <%= restaurant.distance %></div> 
-  </p>
+  <tr>
+    <td class="logo"><%= link_to image_tag(restaurant.image_url), restaurant %></td>
+    <td>
+      <h4><%= link_to restaurant.title, restaurant %></h4>
+      <dl>
+        <dt class="icon-tags"></dt>
+        <dd><%= restaurant.category_list %></dd>
+        <dt><%= image_tag(restaurant.rating_image_url) %></dt>
+        <dd><%= restaurant.review_count %> reviews</dd>
+        <dt class="icon-map-marker"></dt>
+        <dd><%= restaurant.address %></dd>
+        <dt>Distance:</dt>
+        <dd class="distance"><%= restaurant.distance %></div> 
+      </dl>
+    </td>
+  </tr>
 <% end %>
+</tbody>
+</table>

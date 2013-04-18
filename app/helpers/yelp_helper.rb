@@ -32,11 +32,20 @@ module YelpHelper
     entity_objects = []
 
     data["businesses"].each do |business|
+      categories = []
+      business["categories"].each do |category|
+        categories << category[0]
+      end
+
       entity = class_str.capitalize.constantize.new(
                   coordinates: [business["location"]["coordinate"]["longitude"], business["location"]["coordinate"]["latitude"]],
                     title: business["name"], 
                     url: business["url"],
                     address: business["location"]["display_address"].join(" "),
+                    category_list: categories.join(", "),
+                    review_count: business["review_count"],
+                    rating_image_url: business["rating_img_url"],
+                    image_url: business["image_url"],
                     source: "yelp")
 
         entity_objects << entity
