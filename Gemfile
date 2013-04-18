@@ -7,6 +7,9 @@ gem 'devise'
 gem "bootstrap-sass", "~> 2.3.1.0"
 gem 'json'
 gem 'oauth'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'will_paginate_mongoid'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
