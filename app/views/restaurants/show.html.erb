@@ -13,4 +13,10 @@
   <dd class="distance"><%= @restaurant.distance %></div> 
 </dl>
 <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @restaurant), likeable: @restaurant } %>
+<%= render partial: 'comments/comment_form', locals: { commentable: @restaurant } %>
+<br />
+<ul class="comments">
+  <%= render @restaurant.comments %>
+</ul> 
 </div>
+

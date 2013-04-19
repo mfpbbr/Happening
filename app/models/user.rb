@@ -41,10 +41,9 @@ class User
 
   has_many :statuses, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
-
-  index({ "statuses.coordinates" => "2d" }, { min: -200, max: 200 })
 
   def retrieve_users_for_ids(user_ids)
     users = []
@@ -113,6 +112,17 @@ class User
       activity_item[:entity_url] = like.likeable
       activity_item[:action_created_at] = like.created_at
   
+      activity_items << activity_item
+    end
+
+    comments.each do |comment|
+      activity_item = {}
+      activity_item[:username] = comment.user.username
+      activity_item[:action] = "commented \"#{comment.text}\" on"
+      activity_item[:entity_title] = comment.commentable.class.to_s == "Photo" ? comment.commentable.image_small : comment.commentable.title
+      activity_item[:entity_url] = comment.commentable
+      activity_item[:action_created_at] = comment.created_at
+
       activity_items << activity_item
     end
 

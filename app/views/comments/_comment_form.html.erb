@@ -1,0 +1,7 @@
+<%= form_for [commentable, Comment.new], remote: true do |f| %>
+  <div class="field">
+    <%= f.text_area :text, placeholder: 'Post a new comment...', cols: "100" %>
+  </div>
+  <%= f.submit 'Post', class: "btn btn-large btn-primary" %>
+<% end %>
+

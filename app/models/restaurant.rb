@@ -15,6 +15,7 @@ class Restaurant
 
   belongs_to :raw
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :address, :category_list, :review_count, :rating_image_url, :image_url, :source, :coordinates
 

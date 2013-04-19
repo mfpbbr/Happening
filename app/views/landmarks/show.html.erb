@@ -2,4 +2,9 @@
 <div class="externalurl"><%= link_to @landmark.url, @landmark.url %></div>
 <div class="distance">Distance: <%= @landmark.distance %></div>
 <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @landmark), likeable: @landmark } %>
+<%= render partial: 'comments/comment_form', locals: { commentable: @landmark } %>
+<br />
+<ul class="comments">
+  <%= render @landmark.comments %>
+</ul> 
 

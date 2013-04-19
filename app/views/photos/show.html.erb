@@ -10,3 +10,8 @@
 <div class="before_photo">
 <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @photo), likeable: @photo } %>
 </div>
+<%= render partial: 'comments/comment_form', locals: { commentable: @photo } %>
+<br />
+<ul class="comments">
+  <%= render @photo.comments %>
+</ul>

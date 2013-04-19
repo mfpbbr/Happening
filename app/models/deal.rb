@@ -14,6 +14,7 @@ class Deal
 
   belongs_to :raw
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   attr_accessible :title, :url, :distance, :merchant_name, :address, :source, :coordinates, :image_small, :image_large
 

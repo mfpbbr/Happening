@@ -1,0 +1,10 @@
+<span class="user"><%= link_to comment.user.username, comment.user %></span>
+<span class="content"><%= wrap(comment.text) %></span>
+<div class="timestamp">
+  <%= time_ago_in_words(comment.created_at) %> ago.
+</div>
+<% if current_user?(comment.user) %>
+  <%= render partial: 'comments/delete_comment_form', locals: { comment: comment } %>
+<% else %>
+  <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, comment), likeable: comment } %>
+<% end %>

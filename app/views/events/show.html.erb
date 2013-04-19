@@ -6,4 +6,9 @@
 <div class="address"><strong>Address: </strong><%= @event.address %></div>
 <div class="distance"><strong>Distance: </strong><%= @event.distance %></div>
 <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, @event), likeable: @event } %>
+<%= render partial: 'comments/comment_form', locals: { commentable: @event } %>
+<br />
+<ul class="comments">
+  <%= render @event.comments %>
+</ul> 
 

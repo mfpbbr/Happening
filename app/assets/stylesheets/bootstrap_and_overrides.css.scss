@@ -39,9 +39,9 @@ section {
   overflow: auto;
 }
 
-textarea {
+/*textarea {
   resize: vertical;
-}
+}*/
 
 .center {
   text-align: center;
@@ -140,9 +140,9 @@ section {
   overflow: auto;
 }
 
-textarea {
+/*textarea {
   resize: vertical;
-}
+}*/
 
 .center {
   text-align: center;
@@ -394,5 +394,40 @@ dl, .new_like, .edit_like {
   }
   strong {
     display: block;
+  }
+}
+
+.new_comment {
+  textarea {
+    height: 50px;
+    width: 50%;
+    margin: 15px 0 15px 0;
+    float: left;
+  }
+
+  input[type="submit"] {
+    margin: 22px 0 0 10px;
+  }
+}
+
+.comments {
+  list-style: none;
+  margin: 0 0 0 0;
+ 
+  li {
+    padding: 10px 0 0 0;
+    border-top: 1px solid #e8e8e8;
+  } 
+
+  .content {
+    display: block;
+  }
+
+  .timestamp {
+    color: $grayLight;
+  }
+
+  input[type="submit"] {
+    margin-top: 5px;
   }
 }

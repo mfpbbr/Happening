@@ -1,1 +1,6 @@
-<%= render partial: 'statuses/single_status', locals: { status: @status } %>
+<%= render partial: 'statuses/single_status', locals: { status: @status } %><%= render partial: 'comments/comment_form', locals: { commentable: @status } %>
+<br />
+<ul class="comments">
+  <%= render @status.comments %>
+</ul> 
+

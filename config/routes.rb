@@ -20,26 +20,36 @@ Happening::Application.routes.draw do
 
   resources :statuses, only: [:show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
+  end
+
+  resources :comments, only: [:show, :destroy] do
+    resources :likes, only: [:create, :destroy], shallow: true
   end
 
   resources :landmarks, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
   end
 
   resources :restaurants, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
   end
 
   resources :photos, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
   end
 
   resources :events, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
   end
 
   resources :deals, only: [:index, :show] do
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create], shallow: true
   end
 
   root to: 'static_pages#home'
