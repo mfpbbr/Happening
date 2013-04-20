@@ -61,5 +61,5 @@ Happening::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'http://pure-garden-1992.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'https://happeningnow.herokuapp.com/' }
 end
