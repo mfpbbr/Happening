@@ -6,32 +6,41 @@ class DealsController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @deals = Deal.geo_near(@coordinates).max_distance(20).spherical
+    @deals = Deal.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(20).spherical.entries
     
-    @deals = create() if @deals.nil? or @deals.empty?
+    @deals = create() if @deals.nil? or @deals.empty? or @deals.count < 15
 
     @deals.each do |deal|
-      deal.distance = haversine_distance(@coordinates, deal.coordinates).round(2).to_s + " miles"
+      deal.distance = haversine_distance(@coordinates, deal.coordinates).round(2)
     end
+
+    @distance_metric = "miles"
+    @deals.sort_by! { |deal| deal.distance }
   end
 
   def show
     @deal = Deal.find(params[:id])
-    @deal.distance = haversine_distance(@coordinates, @deal.coordinates).round(2).to_s + " miles"
+    @deal.distance = haversine_distance(@coordinates, @deal.coordinates).round(2)
+    @distance_metric = "miles"
   end
 
   def create
     deal_content = fetch_objects_near_location(@coordinates)
+    @deals = []
 
-    if deal_content.nil?
-      @deals = []
-    else
+    unless deal_content.nil?
       deal_content = JSON.parse(deal_content)
       raw_object = Raw.create(data: deal_content, source_url: @source_url)
-      @deals = parse_data(deal_content)
-      @deals.each do |deal|
-        deal.raw_id = raw_object.id
-        deal.save!
+      deals_array = parse_data(deal_content)
+      deals_array.each do |deal|
+        existing_deal = Deal.where(url: deal.url).first
+        if existing_deal.nil?
+          deal.raw_id = raw_object.id
+          deal.save!
+          @deals << deal
+        else
+          @deals << existing_deal
+        end
       end
     end
 

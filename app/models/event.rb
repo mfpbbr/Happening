@@ -19,4 +19,5 @@ class Event
   attr_accessible :title, :url, :distance, :venue_name, :address, :start_date, :logo, :source, :coordinates
 
   index({ coordinates: "2d" }, { min: -200, max: 200 })
+  index({ url: 1 })
 end

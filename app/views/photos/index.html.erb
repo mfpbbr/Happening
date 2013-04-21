@@ -9,7 +9,7 @@
       <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, photo), likeable: photo } %>
       </div>
       <h3 class="location"><%= photo.location_name.nil? ? " " : photo.location_name %></h3>
-      <div class="distance">Distance: <%= photo.distance %></div> 
+      <div class="distance">Distance: <%= photo.distance %> <%= @distance_metric %></div> 
       <% unless photo.title.nil? %>
         <div class="caption"><%= photo.title %></div>
       <% end %>

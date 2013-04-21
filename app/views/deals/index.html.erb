@@ -17,7 +17,7 @@
         <dt class="icon-map-marker"></dt>
         <dd><%= deal.address %></dd>
         <dt>Distance:</dt>
-        <dd class="distance"><%= deal.distance %></div> 
+        <dd class="distance"><%= deal.distance %> <%= @distance_metric %></div> 
       </dl>
       <%= render partial: 'likes/like_form', locals: { like_object: find_like(current_user, deal), likeable: deal } %>
     </td>

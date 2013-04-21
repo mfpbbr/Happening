@@ -18,5 +18,5 @@ class Photo
   attr_accessible :title, :url, :distance, :location_name, :source, :coordinates, :image_small, :image_large
 
   index({ coordinates: "2d" }, { min: -200, max: 200 })
-
+  index({ url: 1 })
 end
