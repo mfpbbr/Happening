@@ -10,6 +10,10 @@ class DealsController < ApplicationController
     
     @deals = create() if @deals.nil? or @deals.empty? or @deals.count < 15
 
+    if @deals.count < 10
+      @deals.concat(Deal.geo_near(@coordinates).max_distance(20).spherical.entries)    
+    end 
+
     @deals.each do |deal|
       deal.distance = haversine_distance(@coordinates, deal.coordinates).round(2)
     end

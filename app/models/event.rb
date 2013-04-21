@@ -20,4 +20,5 @@ class Event
 
   index({ coordinates: "2d" }, { min: -200, max: 200 })
   index({ url: 1 })
+  index({ created_at: -1 })
 end

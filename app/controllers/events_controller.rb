@@ -10,6 +10,10 @@ class EventsController < ApplicationController
     
     @events = create() if @events.nil? or @events.empty? or @events.count < 15
 
+    if @events.count < 10
+      @events.concat(Event.geo_near(@coordinates).max_distance(20).spherical.entries)    
+    end
+
     @events.each do |event|
       event.distance = haversine_distance(@coordinates, event.coordinates).round(2)
     end

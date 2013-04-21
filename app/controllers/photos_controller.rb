@@ -7,9 +7,12 @@ class PhotosController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @photos = Photo.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(20).entries
+    @photos = Photo.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(20).spherical.entries
     
     @photos = create() if @photos.nil? or @photos.empty? or @photos.count < 15
+    if @photos.count < 10
+      @photos.concat(Photo.geo_near(@coordinates).max_distance(20).spherical.entries)
+    end 
 
     @photos.each do |photo|
       photo.distance = haversine_distance(@coordinates, photo.coordinates).round(2)
