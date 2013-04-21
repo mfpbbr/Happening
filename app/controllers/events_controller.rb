@@ -11,7 +11,10 @@ class EventsController < ApplicationController
     @events = create() if @events.nil? or @events.empty? or @events.count < 15
 
     if @events.count < 10
-      @events.concat(Event.geo_near(@coordinates).max_distance(20).spherical.entries)    
+      @events.concat(Event.geo_near(@coordinates).max_distance(20).spherical.entries)   
+      @events.uniq! { |event| event.url }
+      @events.sort_by! { |event| event.created_at }.reverse!
+      @events = @events.take(20) 
     end
 
     @events.each do |event|

@@ -11,7 +11,10 @@ class DealsController < ApplicationController
     @deals = create() if @deals.nil? or @deals.empty? or @deals.count < 15
 
     if @deals.count < 10
-      @deals.concat(Deal.geo_near(@coordinates).max_distance(20).spherical.entries)    
+      @deals.concat(Deal.geo_near(@coordinates).max_distance(20).spherical.entries)   
+      @deals.uniq! { |deal| deal.url }
+      @deals.sort_by! { |deal| deal.created_at }.reverse!
+      @deals = @deals.take(20) 
     end 
 
     @deals.each do |deal|

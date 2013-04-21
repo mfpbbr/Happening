@@ -12,6 +12,9 @@ class PhotosController < ApplicationController
     @photos = create() if @photos.nil? or @photos.empty? or @photos.count < 15
     if @photos.count < 10
       @photos.concat(Photo.geo_near(@coordinates).max_distance(20).spherical.entries)
+      @photos.uniq! { |photo| photo.url }
+      @photos.sort_by! { |photo| photo.created_at }.reverse!
+      @photos = @photos.take(20)
     end 
 
     @photos.each do |photo|
