@@ -6,12 +6,12 @@ class DealsController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @deals = Deal.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(20).spherical.entries
+    @deals = Deal.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical.entries
     
     @deals = create() if @deals.nil? or @deals.empty? or @deals.count < 15
 
     if @deals.count < 10
-      @deals.concat(Deal.geo_near(@coordinates).max_distance(20).spherical.entries)   
+      @deals.concat(Deal.geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical.entries)   
       @deals.uniq! { |deal| deal.url }
       @deals.sort_by! { |deal| deal.created_at }.reverse!
       @deals = @deals.take(20) 

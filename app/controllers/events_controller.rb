@@ -6,12 +6,12 @@ class EventsController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @events = Event.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(20).spherical.entries
+    @events = Event.where(:created_at.gte => Time.now.utc - 1.hour).geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical.entries
     
     @events = create() if @events.nil? or @events.empty? or @events.count < 15
 
     if @events.count < 10
-      @events.concat(Event.geo_near(@coordinates).max_distance(20).spherical.entries)   
+      @events.concat(Event.geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical.entries)   
       @events.uniq! { |event| event.url }
       @events.sort_by! { |event| event.created_at }.reverse!
       @events = @events.take(20) 

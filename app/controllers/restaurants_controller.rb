@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @restaurants = Restaurant.geo_near(@coordinates).max_distance(20).spherical
+    @restaurants = Restaurant.geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical
 
     @restaurants = create() if @restaurants.nil? or @restaurants.empty?
 

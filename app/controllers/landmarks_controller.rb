@@ -6,7 +6,7 @@ class LandmarksController < ApplicationController
   def index
     # NOTE: There is a difference between the geo_near_distance 
     # returned by mongoid and the haversine distance i compute
-    @landmarks = Landmark.geo_near(@coordinates).max_distance(20).spherical
+    @landmarks = Landmark.geo_near(@coordinates).max_distance(convert_miles_to_radius(20)).spherical
 
     @landmarks = create() if @landmarks.nil? or @landmarks.empty?
       

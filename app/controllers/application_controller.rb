@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
       return nil 
     end
 
+    def convert_miles_to_radius(mile)
+      return mile * 1.6 / 111.12
+    end
+
   private
 
     def get_location_from_geocoder
